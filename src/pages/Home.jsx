@@ -14,7 +14,7 @@ export const Home =({searchValue})=>{
     const [sortType,setSortType] =useState({
         name:'популярности', sortProperty:'rating'
     })
-    const [currentPage, setCurrentPage] = useState(0);
+    const [currentPage, setCurrentPage] = useState(1);
     useEffect(()=>{
         setIsLoading(true)
         const order =sortType.sortProperty.replace('-','');
