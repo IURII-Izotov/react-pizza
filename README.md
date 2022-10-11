@@ -8,3 +8,4 @@ Run project:
 Run tests:
 
 ### `yarn test`
+[Hotel TOXIN](https://raizot.github.io/toxin/dist/about-project.html)
