@@ -1,5 +1,5 @@
 import {Categories} from "../components/Categories";
-
+import axios from "axios";
 import {Skelenon} from "../components/PizzaBlock/Skeleton";
 import {PizzaBlock} from "../components/PizzaBlock";
 import {useContext, useEffect, useState} from "react";
@@ -22,18 +22,17 @@ export const Home =()=>{
         const order =sort.sortProperty.replace('-','');
         const category = categoryId > 0 ? 'category=' + categoryId : '';
         const sortBy = sort.sortProperty[0] == '-'? 'desc':'asc';
-        fetch(`https://630e6210109c16b9abfa526d.mockapi.io/items?page=${currentPage}&limit=4&${category}&sortBy=${order}&order=${sortBy}&search=${searchValue}`).then(res=>{
-            return res.json()
-        }).then(json=>{
-            setItems(json);
-            setIsLoading(false);
-        })
+        axios.get(
+            `https://630e6210109c16b9abfa526d.mockapi.io/items?page=${currentPage}&limit=4&${category}&sortBy=${order}&order=${sortBy}&search=${searchValue}`
+        )
+            .then(res=>{
+                setItems(res.data);
+                setIsLoading(false);
+            })
     },[categoryId,sort.sortProperty,searchValue,currentPage])
 
     const onClickCategory =(categoryId)=>{
-        console.log(categoryId)
         dispatch(setCategoryId(categoryId))
-        // setCategoryId(categoryId)
     }
     const onClickSort = (name)=>{
         dispatch(name)
