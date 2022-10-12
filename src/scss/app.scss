@@ -55,14 +55,17 @@ body {
 
     @media (max-width: 1400px) {
       grid-template-columns: repeat(3, 1fr);
+      justify-items: center;
     }
 
     @media (max-width: 1060px) {
       grid-template-columns: repeat(2, 1fr);
+      justify-items: center;
     }
 
     @media (max-width: 730px) {
       grid-template-columns: repeat(1, 1fr);
+      justify-items: center;
     }
   }
 
@@ -73,11 +76,9 @@ body {
 
     @media (max-width: 1260px) {
       .categories {
-        width: 100%;
-        overflow: auto;
-
+        max-width: 100%;
         ul {
-          width: 785px;
+          width: inherit;
         }
       }
 
@@ -178,7 +179,9 @@ body {
   }
 
   .content__items {
-    display: block;
+    display: flex;
+    justify-content: center;
+
   }
 
   &__item {
