@@ -1,14 +1,20 @@
 
 .root {
   position: relative;
-  left: -120px;
+  margin-right: 10px;
+  margin-left: 10px;
+  width: 100%;
+  max-width: 400px;
+  min-width: 150px;
 }
 
 .input {
   border: 1px solid rgba(0, 0, 0, 0.1);
   padding: 12px 20px;
   padding-left: 42px;
-  width: 400px;
+  width: inherit;
+
+
   border-radius: 10px;
   font-size: 16px;
 
