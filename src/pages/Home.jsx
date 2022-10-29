@@ -10,7 +10,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import {setCategoryId,setCurrentPage,setFilters} from "../redux/slices/filterSlice";
 import qs from 'qs'
 import {useNavigate} from "react-router-dom";
-import {fetchPizzas, setItems} from "../redux/slices/pizzaSlice";
+import {fetchPizzas} from "../redux/slices/pizzaSlice";
 
 export const Home =()=>{
     const dispatch =useDispatch();
@@ -37,6 +37,9 @@ export const Home =()=>{
     }
 
     useEffect(()=>{
+        if(!isSearch.current){
+            getPizzas()
+        }
         if(isMounted.current){
             const queryString=qs.stringify({
                 sortProperty:sort.sortProperty,
@@ -60,6 +63,7 @@ export const Home =()=>{
         }
 
     },[])
+
     useEffect(()=>{
         window.scrollTo(0, 0);
         if(!isSearch.current){
@@ -71,9 +75,6 @@ export const Home =()=>{
 
     const onClickCategory =(categoryId)=>{
         dispatch(setCategoryId(categoryId))
-    }
-    const onClickSort = (name)=>{
-        dispatch(name)
     }
     const onChangePage = (number)=> {
         dispatch(setCurrentPage(number))
