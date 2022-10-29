@@ -80,7 +80,7 @@ export const Home =()=>{
     return(
         <>
             <div className="content__top">
-                <Categories categoryId ={categoryId}
+                <Categories categoryId = {categoryId == null ? 0 : categoryId }
                             onClickCategory ={onClickCategory}
                 />
                 <Sort/>
