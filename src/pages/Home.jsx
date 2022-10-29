@@ -46,9 +46,8 @@ export const Home =()=>{
             navigate(`?${queryString}`)
         }
         isMounted.current = true;
-        isSearch.current=false;
-
     },[categoryId,sort.sortProperty,currentPage])
+
     useEffect(()=>{
         if(window.location.search){
             const params=qs.parse(window.location.search.substring(1));
