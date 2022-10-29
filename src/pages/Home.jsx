@@ -37,9 +37,6 @@ export const Home =()=>{
     }
 
     useEffect(()=>{
-        if(!isSearch.current){
-            getPizzas()
-        }
         if(isMounted.current){
             const queryString=qs.stringify({
                 sortProperty:sort.sortProperty,
@@ -49,6 +46,7 @@ export const Home =()=>{
             navigate(`?${queryString}`)
         }
         isMounted.current = true;
+        isSearch.current=false;
 
     },[categoryId,sort.sortProperty,currentPage])
     useEffect(()=>{
@@ -89,13 +87,21 @@ export const Home =()=>{
                 <Sort/>
             </div>
             <h2 className="content__title">Все пиццы</h2>
-            <div className="content__items">
-                {   status === 'loading'
-                    ? [...new Array(8)].map((_,index)=> <Skelenon key={index} />)
-                    : items.map((obj)=><PizzaBlock key={obj.id} {...obj}/>)
-                }
+            {
+                status ==='error'?
+                    (<div className="content__error-info">
+                        <h1>Произошла ошибка 😱</h1>
+                        <p>Не удалось получить данные! 😥</p>
+                    </div>)
+                    :
+                    (<div className="content__items">
+                        {   status === 'loading'
+                            ? [...new Array(8)].map((_,index)=> <Skelenon key={index} />)
+                            : items.map((obj)=><PizzaBlock key={obj.id} {...obj}/>)
+                        }
+                    </div>)
+            }
 
-            </div>
             <Pagination currentPage={currentPage} onChangePage={onChangePage}/>
         </>
     )
