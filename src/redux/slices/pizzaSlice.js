@@ -3,7 +3,7 @@ import axios from "axios";
 
 
 export const fetchPizzas = createAsyncThunk(
-    'pizza/fetchPizzas',async (params)=>{
+    'pizza/fetchPizzas',async (params,thunkAPI)=>{
         const {
             order,
             category,

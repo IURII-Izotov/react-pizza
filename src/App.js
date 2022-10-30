@@ -12,18 +12,14 @@ import {Cart} from "./pages/Cart";
 import {useSelector} from "react-redux";
 import {CartEmpty} from "./components/CartEmpty";
 
-export const SearchContext = React.createContext();
-
 
 function App() {
-    const [searchValue,setSearchValue] = React.useState('');
     const {items}= useSelector((state)=> state.cart )
     const totalCount = items.reduce((sum,item)=>{
         return item.count + sum
     },0)
     return (
         <div className="wrapper">
-            <SearchContext.Provider  value={{searchValue,setSearchValue}}>
                 <Header />
                 <div className="content">
                     <div className="container">
@@ -34,7 +30,6 @@ function App() {
                         </Routes>
                     </div>
                 </div>
-            </SearchContext.Provider>
         </div>
 
     );

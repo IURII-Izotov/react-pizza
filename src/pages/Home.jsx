@@ -15,9 +15,8 @@ import {fetchPizzas} from "../redux/slices/pizzaSlice";
 export const Home =()=>{
     const dispatch =useDispatch();
     const {items,status} = useSelector(state => state.pizza)
-    const {categoryId,sort,currentPage} = useSelector(state => state.filter)
+    const {categoryId,sort,currentPage,searchValue} = useSelector(state => state.filter)
 
-    const {searchValue} = useContext(SearchContext)
     const navigate = useNavigate();
     const isSearch = useRef(false);
     const isMounted = useRef(false)
