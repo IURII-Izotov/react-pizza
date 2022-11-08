@@ -1,4 +1,10 @@
-export const Categories = ({categoryId,onClickCategory}) => {
+import React from "react";
+
+type TCategoriesProps = {
+    categoryId: number,
+    onClickCategory: (index: number) => void
+}
+export const Categories: React.FC<TCategoriesProps> = ({categoryId,onClickCategory}) => {
 
     const categories=['Все', 'Мясные', 'Вегетарианская', 'Гриль', 'Острые', 'Закрытые']
 

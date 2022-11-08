@@ -1,21 +1,21 @@
 import {Categories} from "../components/Categories";
 import {Skelenon} from "../components/PizzaBlock/Skeleton";
 import {PizzaBlock} from "../components/PizzaBlock";
-import {useContext, useEffect, useRef, useState} from "react";
+import {useEffect, useRef} from "react";
 import {Sort, sortList} from "../components/Sort";
 import {Pagination} from "../components/Pagination";
 import * as React from "react";
-import {SearchContext} from "../App";
+
 import { useSelector, useDispatch } from 'react-redux'
 import {setCategoryId,setCurrentPage,setFilters} from "../redux/slices/filterSlice";
 import qs from 'qs'
 import {useNavigate} from "react-router-dom";
 import {fetchPizzas} from "../redux/slices/pizzaSlice";
 
-export const Home =()=>{
+export const Home:React.FC =()=>{
     const dispatch =useDispatch();
-    const {items,status} = useSelector(state => state.pizza)
-    const {categoryId,sort,currentPage,searchValue} = useSelector(state => state.filter)
+    const {items,status} = useSelector((state:any) => state.pizza)
+    const {categoryId,sort,currentPage,searchValue} = useSelector((state:any) => state.filter)
 
     const navigate = useNavigate();
     const isSearch = useRef(false);
@@ -26,7 +26,10 @@ export const Home =()=>{
         const category = categoryId > 0 ? 'category=' + categoryId : '';
         const sortBy = sort.sortProperty[0] == '-'? 'desc':'asc';
 
-        dispatch(fetchPizzas({
+
+        dispatch(
+            // @ts-ignore
+            fetchPizzas({
             order,
             category,
             sortBy,
@@ -69,10 +72,10 @@ export const Home =()=>{
     },[categoryId,sort.sortProperty,searchValue,currentPage])
 
 
-    const onClickCategory =(categoryId)=>{
+    const onClickCategory =(categoryId:number)=>{
         dispatch(setCategoryId(categoryId))
     }
-    const onChangePage = (number)=> {
+    const onChangePage = (number:number)=> {
         dispatch(setCurrentPage(number))
     }
 
@@ -95,7 +98,7 @@ export const Home =()=>{
                     (<div className="content__items">
                         {   status === 'loading'
                             ? [...new Array(8)].map((_,index)=> <Skelenon key={index} />)
-                            : items.map((obj)=><PizzaBlock key={obj.id} {...obj}/>)
+                            : items.map((obj:any)=><PizzaBlock key={obj.id} {...obj}/>)
                         }
                     </div>)
             }

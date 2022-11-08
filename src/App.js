@@ -11,25 +11,31 @@ import * as React from "react";
 import {Cart} from "./pages/Cart";
 import {useSelector} from "react-redux";
 import {CartEmpty} from "./components/CartEmpty";
+import {FullPizza} from "./pages/FullPizza";
 
+function Parent() {
+
+}
 
 function App() {
-    const {items}= useSelector((state)=> state.cart )
-    const totalCount = items.reduce((sum,item)=>{
+    const {items} = useSelector((state) => state.cart)
+    const totalCount = items.reduce((sum, item) => {
         return item.count + sum
-    },0)
+    }, 0)
+
     return (
         <div className="wrapper">
-                <Header />
-                <div className="content">
-                    <div className="container">
-                        <Routes>
-                            <Route path="/" element={ <Home /> } />
-                            <Route path="/cart" element={totalCount!==0 ? <Cart/>:<CartEmpty/>} />
-                            <Route path="*" element={<NotFound/>} />
-                        </Routes>
-                    </div>
+            <Header/>
+            <div className="content">
+                <div className="container">
+                    <Routes>
+                        <Route path="/" element={<Home/>}/>
+                        <Route path="/cart" element={totalCount !== 0 ? <Cart/> : <CartEmpty/>}/>
+                        <Route path="/pizza/:id" element={<FullPizza/>}/>
+                        <Route path="*" element={<NotFound/>}/>
+                    </Routes>
                 </div>
+            </div>
         </div>
 
     );
