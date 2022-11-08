@@ -1,9 +1,13 @@
-import {useEffect, useRef, useState} from "react";
+import React, {useEffect, useRef, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {setSort} from "../redux/slices/filterSlice";
 type TSortList = {
     name: string,
     sortProperty: string
+}
+
+type TPopupClick = MouseEvent & {
+    path: Node[];
 }
 export const sortList: TSortList[] = [
     {name:"популярности по возрастанию(ASC)",sortProperty:"rating"},
@@ -26,8 +30,9 @@ export const Sort = ()=>{
     }
 
     useEffect(()=> {
-        const handleClickOutside = (event:any) => {
-            if (!event.path.includes(sortRef.current)) {
+        const handleClickOutside = (event:MouseEvent) => {
+            const _event = event as TPopupClick;
+            if (sortRef.current && ! _event.path.includes(sortRef.current)) {
                 setIsVisible(false);
             }
         }

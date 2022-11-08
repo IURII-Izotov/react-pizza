@@ -14,7 +14,6 @@ export const Search:React.FC = () => {
         dispatch(setSearchValue(''));
         setValue('');
         inputRef.current?.focus();
-
     }
 
 
@@ -23,7 +22,7 @@ export const Search:React.FC = () => {
             dispatch(setSearchValue(str));
         }, 400),[]
     )
-    const onChangeInput =(event:any)=>{
+    const onChangeInput =(event:React.ChangeEvent<HTMLInputElement>)=>{
         setValue(event.target.value)
         updateSearchValue(event.target.value);
     }
@@ -71,7 +70,7 @@ export const Search:React.FC = () => {
             />
             <svg
                 className={styles.close}
-                onClick={()=>onClickClear()}
+                onClick={onClickClear}
                 fill="#000000"
                 viewBox="0 0 50 50"
                 width="25px"
